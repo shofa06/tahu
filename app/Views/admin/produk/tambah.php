@@ -63,12 +63,12 @@
                             <input type="text" class="form-control" id="nama_produk" name="nama_produk" required>
                         </div>
                         <div class="form-group">
-                            <label for="stok">Stok</label>
-                            <input type="number" class="form-control" id="stok" name="stok" required>
-                        </div>
-                        <div class="form-group">
                             <label for="harga">Harga</label>
                             <input type="number" class="form-control" id="harga" name="harga" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="stok">Stok</label>
+                            <input type="number" class="form-control" id="stok" name="stok" required>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>

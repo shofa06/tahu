@@ -10,7 +10,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
    <!-- site metas -->
-   <title>Doze Cafe</title>
+   <title>SITAHU</title>
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
@@ -135,7 +135,10 @@
             </div>
          </div>
          <div class="about_section_2 layout_padding">
-            <div class="image_iman"><img src="/template-pelanggan/images/about-img.png" class="about_img"></div>
+    <div class="image_iman">
+  <img src="/template-pelanggan/images/kedai.jpg" class="kedai_jpg" style="width: 400px; height: auto;">
+</div>
+
             <div class="about_taital_box">
                <h1 class="about_taital_1">Tahu Bakso Crispy</h1>
                <p class=" about_text">Kedai Tahu Bakso Crispy merupakan usaha yang bergerak di bidang kuliner dengan sajian utama berupa Tahu Bakso Crispy yang renyah di luar dan lezat di dalam. Berlokasi di Kecamatan Bati-Bati, kedai kami hadir untuk menyajikan camilan favorit keluarga dengan cita rasa khas dan kualitas terbaik.

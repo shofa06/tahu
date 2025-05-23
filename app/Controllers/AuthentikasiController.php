@@ -50,4 +50,24 @@ class AuthentikasiController extends BaseController
         }
         return view('auth/login');
     }
+
+    public function registrasi()
+    {
+        return view('auth/registrasi');
+    }
+
+    public function simpanRegistrasi()
+    {
+        $model = new \App\Models\UserModel();
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+            'no_telp' => $this->request->getPost('no_telp'),
+            'alamat' => $this->request->getPost('alamat'),
+            'level' => 'pelanggan',
+        ];
+        $model->insert($data);
+        return redirect()->to('login')->with('success', 'Registrasi berhasil, silahkan login.');
+    }
 }

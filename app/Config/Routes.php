@@ -8,6 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/login', 'AuthentikasiController::login');
 $routes->post('login/proses', 'AuthentikasiController::proses');
+$routes->get('registrasi', 'AuthentikasiController::registrasi');
+$routes->post('registrasi/simpan', 'AuthentikasiController::simpanRegistrasi');
 
 $routes->get('/', 'Pelanggan\PemesananController::index');
 $routes->get('/pemesanan', 'Pelanggan\PemesananController::index');
@@ -22,6 +24,18 @@ $routes->get('admin/produk/edit/(:num)', 'admin\ProdukController::edit/$1');
 $routes->post('admin/produk/simpan', 'admin\ProdukController::simpan');
 $routes->get('admin/produk/hapus/(:num)', 'admin\ProdukController::hapus/$1');
 $routes->put('admin/produk/update/(:num)', 'admin\ProdukController::update/$1');
+
+$routes->get('admin/setting', 'admin\SettingController::setting');
+$routes->post('admin/setting/save/(:num)', 'admin\SettingController::save/$1');
+
+$routes->get('admin/lokasi', 'admin\LokasiController::index');
+$routes->get('admin/lokasi/edit/(:num)', 'admin\LokasiController::edit/$1');
+$routes->put('admin/lokasi/update/(:num)', 'admin\LokasiController::update/$1');
+$routes->get('admin/lokasi/tambah', 'admin\LokasiController::tambah');
+$routes->post('admin/lokasi/simpan', 'admin\LokasiController::simpan');
+$routes->get('admin/lokasi/hapus/(:num)', 'admin\LokasiController::hapus/$1');
+
+
 
 $routes->get('admin/kategori', 'admin\KategoriController::index');
 $routes->get('admin/kategori/edit/(:num)', 'admin\KategoriController::edit/$1');
@@ -52,3 +66,4 @@ $routes->get('karyawan/transaksi_pembayaran', 'karyawan\TransaksiPembayaranContr
 $routes->get('pelanggan/dashboard', 'pelanggan\DashboardControllerPelanggan::index');
 $routes->get('pelanggan/pesanan-keranjang', 'pelanggan\PesananKeranjangController::index');
 $routes->get('pelanggan/arsip-pembayaran', 'pelanggan\ArsipPembayaranController::index');
+

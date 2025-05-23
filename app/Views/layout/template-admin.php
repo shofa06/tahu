@@ -349,7 +349,7 @@
 
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/pesanan" aria-expanded="false">
-                                <i class="mdi mdi-tag-multiple"></i>
+                                <i class="mdi mdi-receipt"></i>
                                 <span class="hide-menu">Pesanan</span>
                             </a>
                         </li>
@@ -364,6 +364,18 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/profil" aria-expanded="false">
                                 <i class="mdi mdi-account-circle"></i>
                                 <span class="hide-menu">Profile</span>
+                            </a>
+                        </li>
+                     <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/setting" aria-expanded="false">
+                                <i class="mdi mdi-settings"></i>
+                                <span class="hide-menu">Setting</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/lokasi" aria-expanded="false">
+                                <i class="mdi mdi-map-marker"></i>
+                                <span class="hide-menu">Lokasi</span>
                             </a>
                         </li>
                     </ul>

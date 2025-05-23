@@ -81,7 +81,7 @@
                                         <td style="color : white;">
                                             <?php
                                             $status = strtolower($pesanan['status']);
-                                            $badge = 'primary'; // Default badge color  
+                                            $badge = 'warning'; // Default badge color  
                                             if ($status === 'diantar') {
                                                 $badge = 'info';
                                             } elseif ($status === 'selesai') {

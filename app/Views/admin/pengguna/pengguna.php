@@ -57,7 +57,6 @@
                                     <th>Nomor Telp</th>
                                     <th>Alamat</th>
                                     <th>Level</th>
-                                    <th>Gambar</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -71,7 +70,6 @@
                                         <td><?= $item['no_telp'] ?></td>
                                         <td><?= $item['alamat'] ?></td>
                                         <td><?= $item['level'] ?></td>
-                                        <td><img src="<?= $item['gambar'] ?>" alt="Gambar Pengguna" width="50"></td>
                                         <td>
                                             <a href="/admin/pengguna/edit/<?= $item['id_user'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                             <a href="/admin/pengguna/hapus/<?= $item['id_user'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>

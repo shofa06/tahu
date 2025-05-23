@@ -31,7 +31,7 @@
                         <table class="table table-bordered table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>No. Invoice</th>
                                     <th>Produk</th>
                                     <th>Jumlah</th>
@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>2</td>
                                     <td>INV-00112</td>
-                                    <td>Kripik Tempe Original</td>
+                                    <td>Samosa</td>
                                     <td>1</td>
                                     <td>2025-04-28</td>
                                     <td><span class="badge bg-danger">Dibatalkan</span></td>
@@ -60,7 +60,7 @@
                                 <tr>
                                     <td>3</td>
                                     <td>INV-00113</td>
-                                    <td>Tahu Bakso Spesial</td>
+                                    <td>Tahu Bakso Pedas</td>
                                     <td>3</td>
                                     <td>2025-04-25</td>
                                     <td><span class="badge bg-success">Selesai</span></td>
