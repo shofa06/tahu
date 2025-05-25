@@ -32,21 +32,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
-.uniform-img {
-   height: 180px;
-   object-fit: cover;
-   border-top-left-radius: 0.5rem;
-   border-top-right-radius: 0.5rem;
-}
-.produk-card {
-   cursor: pointer;
-   transition: 0.3s;
-}
-.produk-card.selected {
-   border: 3px solid #28a745;
-   box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
-}
-</style>
+        .uniform-img {
+            height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+
+        .produk-card {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .produk-card.selected {
+            border: 3px solid #28a745;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        }
+    </style>
 
 
 
@@ -144,10 +146,54 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
                         <p class="mb-3">Silakan masukkan jumlah untuk setiap produk yang Anda pilih:</p>
                         <div id="listProdukDipilih"></div>
+
+                        <hr>
+
+                        <!-- Pilihan metode pengiriman -->
+                        <div class="form-group">
+                            <label for="jenisPengiriman">Pilih Metode Pengiriman</label>
+                            <select id="jenisPengiriman" name="jenis_pengiriman" class="form-control" required>
+                                <option value="" disabled selected>-- Pilih --</option>
+                                <option value="antar">Antar</option>
+                                <option value="ambil">Ambil di Tempat</option>
+                            </select>
+                        </div>
+
+                        <!-- Lokasi pengiriman dan alamat, hanya tampil jika antar -->
+                        <div id="formAntar" style="display: none;">
+                            <div class="form-group mt-3">
+                                <label for="lokasiPengiriman">Pilih Lokasi Pengiriman</label>
+                                <select id="lokasiPengiriman" name="lokasi_pengiriman" class="form-control">
+                                    <option value="" selected disabled>-- Pilih Lokasi --</option>
+                                    <?php foreach ($dataLokasi as $lokasi) : ?>
+                                        <option
+                                            value="<?= esc($lokasi['id_lokasi']) ?>"
+                                            data-ongkir="<?= esc($lokasi['ongkir']) ?>"
+                                            data-jarak="<?= esc($lokasi['jarak_tempuh']) ?>">
+                                            <?= esc($lokasi['nama_lokasi']) ?> - Rp<?= number_format($lokasi['ongkir'], 0, ',', '.') ?> (<?= esc($lokasi['jarak_tempuh']) ?> km)
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="alamat">Alamat Lengkap</label>
+                                <textarea name="alamat" id="alamat" class="form-control" rows="3" placeholder="Masukkan alamat lengkap..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ongkos Kirim:</label>
+                                <p id="hargaOngkir" style="font-weight:bold; font-size:1.2rem; color:#28a745;">Rp0</p>
+                                <input type="hidden" name="ongkir" id="inputOngkir" value="0">
+                            </div>
+                        </div>
+
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Konfirmasi Order</button>
@@ -156,7 +202,6 @@
             </div>
         </div>
     </div>
-
 
 
     <div class="footer_section layout_padding">
@@ -195,61 +240,73 @@
             </div>
         </div>
     </div>
-    <!-- copyright section end -->
-    <!-- Javascript files-->
-    <script>
-const produkDipilih = [];
 
-document.querySelectorAll('.produk-card').forEach(card => {
-   card.addEventListener('click', function () {
+
+
+    <!-- Script -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  let produkDipilih = [];
+
+  function bukaModalOrder() {
+    const container = document.getElementById('listProdukDipilih');
+    container.innerHTML = '';
+
+    if (produkDipilih.length === 0) {
+      alert("Silakan pilih minimal satu produk.");
+      return;
+    }
+
+    produkDipilih.forEach((produk, index) => {
+      container.innerHTML += `
+        <div class="form-group">
+          <label><strong>${produk.nama}</strong></label>
+          <input type="hidden" name="produk[${index}][id]" value="${produk.id}">
+          <input type="number" name="produk[${index}][jumlah]" class="form-control" placeholder="Jumlah Porsi" required min="1">
+        </div>
+      `;
+    });
+
+    $('#modalOrder').modal('show');
+  }
+
+  $(document).ready(function () {
+    $('#jenisPengiriman').on('change', function () {
+      if (this.value === 'antar') {
+        $('#formAntar').show();
+      } else {
+        $('#formAntar').hide();
+        $('#hargaOngkir').text('Rp0');
+        $('#inputOngkir').val(0);
+      }
+    });
+
+    $('#lokasiPengiriman').on('change', function () {
+      const selected = this.options[this.selectedIndex];
+      const ongkir = selected.getAttribute('data-ongkir') || '0';
+      $('#hargaOngkir').text('Rp' + parseInt(ongkir).toLocaleString('id-ID'));
+      $('#inputOngkir').val(ongkir);
+    });
+
+    $('.produk-card').on('click', function () {
       const id = this.getAttribute('data-id');
       const nama = this.getAttribute('data-nama');
-
       const index = produkDipilih.findIndex(p => p.id === id);
 
       if (index > -1) {
-         produkDipilih.splice(index, 1);
-         this.classList.remove('selected');
+        produkDipilih.splice(index, 1);
+        this.classList.remove('selected');
       } else {
-         produkDipilih.push({ id, nama });
-         this.classList.add('selected');
+        produkDipilih.push({ id, nama });
+        this.classList.add('selected');
       }
-   });
-});
-
-function bukaModalOrder() {
-   const container = document.getElementById('listProdukDipilih');
-   container.innerHTML = '';
-
-   if (produkDipilih.length === 0) {
-      alert("Silakan pilih minimal satu produk.");
-      return;
-   }
-
-   produkDipilih.forEach((produk, index) => {
-      container.innerHTML += `
-         <div class="form-group">
-            <label><strong>${produk.nama}</strong></label>
-            <input type="hidden" name="produk[${index}][id]" value="${produk.id}">
-            <input type="number" name="produk[${index}][jumlah]" class="form-control" placeholder="Jumlah Porsi" required min="1">
-         </div>
-      `;
-   });
-
-   $('#modalOrder').modal('show');
-}
+    });
+  });
 </script>
 
-
-
-    <script src="/template-pelanggan/js/jquery.min.js"></script>
-    <script src="/template-pelanggan/js/popper.min.js"></script>
-    <script src="/template-pelanggan/js/bootstrap.bundle.min.js"></script>
-    <script src="/template-pelanggan/js/jquery-3.0.0.min.js"></script>
-    <script src="/template-pelanggan/js/plugin.js"></script>
-    <!-- sidebar -->
-    <script src="/template-pelanggan/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/template-pelanggan/js/custom.js"></script>
 </body>
 
 </html>

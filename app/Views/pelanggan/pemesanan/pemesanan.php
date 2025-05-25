@@ -111,6 +111,7 @@
                               <h3 class="types_text"><?php echo $produk['nama_produk'];
                                                       echo $produk['nama_kategori']  ?></h3>
                               <p class="looking_text">RP <?php echo $produk['harga'] ?></p>
+                              
                            </div>
                         <?php endforeach; ?>
 

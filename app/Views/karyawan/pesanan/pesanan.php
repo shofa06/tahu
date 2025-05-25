@@ -1,4 +1,4 @@
-<?= $this->extend('layout/template-karyawan') ?>
+<?= $this->extend('layout/template-admin') ?>
 
 <?= $this->section('content') ?>
 <!-- ============================================================== -->
@@ -58,12 +58,14 @@
                         <table class="table table-bordered table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Nama Produk</th>
                                     <th>Harga</th>
                                     <th>Jumlah</th>
                                     <th>Kategori</th>
                                     <th>Status Pesanan</th>
+                                    <th>Pembayaran</th>
+                                    <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -94,7 +96,8 @@
                                                 <?= ucfirst($status) ?>
                                             </span>
                                         </td>
-
+                                        <td><?= $pesanan['pembayaran'] ?></td>
+                                         <td><?= $pesanan['alamat'] ?></td>   
                                         <!-- Tombol Aksi -->
                                         <td>
                                             <!-- Diantar -->

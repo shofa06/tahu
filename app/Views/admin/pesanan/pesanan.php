@@ -63,8 +63,9 @@
                                     <th>Harga</th>
                                     <th>Jumlah</th>
                                     <th>Kategori</th>
+                                    <th>Alamat</th>
+                                    <th>Pembayaran</th>
                                     <th>Status Pesanan</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,15 +75,16 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $pesanan['nama_produk'] ?></td>
                                         <td>Rp <?= number_format($pesanan['total_harga'], 0, ',', '.') ?></td>
-                                        <td><?= $pesanan['stok'] ?></td>
+                                        <td><?= $pesanan['jumlah'] ?></td>
                                         <td><?= $pesanan['nama_kategori'] ?></td>
+                                        <td><?= $pesanan['alamat'] ?></td>  
+                                        <td><?= $pesanan['pembayaran'] ?></td>
                                         
-
                                         <!-- Kolom Status Pesanan -->
                                         <td style="color : white;">
                                             <?php
                                             $status = strtolower($pesanan['status']);
-                                            $badge = 'primary'; // Default badge color  
+                                            $badge = 'warning'; // Default badge color  
                                             if ($status === 'diantar') {
                                                 $badge = 'info';
                                             } elseif ($status === 'selesai') {

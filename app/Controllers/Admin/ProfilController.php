@@ -16,7 +16,7 @@ class ProfilController extends BaseController
     public function index()
     {
         $data = [
-            'dataPengguna' => $this->pengguna->where('id_user', 6)->first(),
+            'dataPengguna' => $this->pengguna->where('id_user', session('id_user'))->first(),
         ];
         return view('admin/profil/profil', $data);
     }
