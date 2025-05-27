@@ -10,6 +10,7 @@ $routes->get('/login', 'AuthentikasiController::login');
 $routes->post('login/proses', 'AuthentikasiController::proses');
 $routes->get('registrasi', 'AuthentikasiController::registrasi');
 $routes->post('registrasi/simpan', 'AuthentikasiController::simpanRegistrasi');
+$routes->get('logout', 'AuthentikasiController::logout');
 
 $routes->get('/', 'Pelanggan\PemesananController::index');
 $routes->get('/pemesanan', 'Pelanggan\PemesananController::index');
@@ -66,4 +67,7 @@ $routes->get('karyawan/transaksi_pembayaran', 'karyawan\TransaksiPembayaranContr
 $routes->get('pelanggan/dashboard', 'pelanggan\DashboardControllerPelanggan::index');
 $routes->get('pelanggan/pesanan-keranjang', 'pelanggan\PesananKeranjangController::index');
 $routes->get('pelanggan/arsip-pembayaran', 'pelanggan\ArsipPembayaranController::index');
+
+$routes->get('pelanggan/pesan-produk', 'pelanggan\PesanProdukController::index');
+$routes->post('pelanggan/pesan-produk/order', 'pelanggan\PesanProdukController::order');
 

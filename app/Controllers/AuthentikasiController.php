@@ -70,4 +70,11 @@ class AuthentikasiController extends BaseController
         $model->insert($data);
         return redirect()->to('login')->with('success', 'Registrasi berhasil, silahkan login.');
     }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('login')->with('success', 'Anda telah berhasil logout.');
+    }
 }

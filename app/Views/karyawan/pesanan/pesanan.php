@@ -1,4 +1,4 @@
-<?= $this->extend('layout/template-admin') ?>
+<?= $this->extend('layout/template-karyawan') ?>
 
 <?= $this->section('content') ?>
 <!-- ============================================================== -->

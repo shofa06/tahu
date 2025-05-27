@@ -67,9 +67,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Profile</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="pesan-produk">Pesan Produk</a>
-                        </li>
+                        
 
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -82,6 +80,8 @@
                 </div>
             </nav>
         </div>
+
+
         <!-- banner section start -->
 
         <!-- banner section end -->
@@ -122,10 +122,6 @@
                                     </button>
                                 </div>
                             </form>
-
-
-
-
                         </div>
                     </div>
 
@@ -174,7 +170,7 @@
                                             value="<?= esc($lokasi['id_lokasi']) ?>"
                                             data-ongkir="<?= esc($lokasi['ongkir']) ?>"
                                             data-jarak="<?= esc($lokasi['jarak_tempuh']) ?>">
-                                            <?= esc($lokasi['nama_lokasi']) ?> - Rp<?= number_format($lokasi['ongkir'], 0, ',', '.') ?> (<?= esc($lokasi['jarak_tempuh']) ?> km)
+                                            <?= esc($lokasi['nama_lokasi']) ?> - Rp<?= number_format($lokasi['ongkir'], 0, ',', '.') ?> (<?= esc($lokasi['jarak_tempuh']) ?>)
                                         </option>
                                     <?php endforeach; ?>
                                 </select>

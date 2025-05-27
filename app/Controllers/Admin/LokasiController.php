@@ -11,7 +11,7 @@ class LokasiController extends BaseController
 
     public function __construct()
     {
-        $this->lokasi = new LokasiModel(); // pastikan LokasiModel sudah dibuat di app/Models
+        $this->lokasi = new LokasiModel();
     }
 
     public function index()
@@ -41,28 +41,29 @@ class LokasiController extends BaseController
     }
 
     public function simpan()
-{
-    $validation = \Config\Services::validation();
+    {
+        $validation = \Config\Services::validation();
 
-    // Validasi input
-    $validation->setRules([
-        'nama_lokasi'   => 'required',
-        'jarak_tempuh'  => 'required|numeric',
-        'ongkir'        => 'required|numeric',
-    ]);
+        // Validasi input
+        $validation->setRules([
+            'nama_lokasi'   => 'required',
+            'jarak_tempuh'  => 'required|max_length[20]', // BUKAN numeric lagi
+            'ongkir'        => 'required|numeric',
+        ]);
 
-    if (!$validation->withRequest($this->request)->run()) {
-        return redirect()->back()->withInput()->with('error', $validation->getErrors());
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('error', $validation->getErrors());
+        }
+
+        $this->lokasi->save([
+            'nama_lokasi'   => $this->request->getPost('nama_lokasi'),
+            'jarak_tempuh'  => $this->request->getPost('jarak_tempuh'),
+            'ongkir'        => $this->request->getPost('ongkir'),
+        ]);
+
+        return redirect()->to('/admin/lokasi')->with('success', 'Data lokasi berhasil ditambahkan.');
     }
 
-    $this->lokasi->save([
-        'nama_lokasi'   => $this->request->getPost('nama_lokasi'),
-        'jarak_tempuh'  => $this->request->getPost('jarak_tempuh'),
-        'ongkir'        => $this->request->getPost('ongkir'),
-    ]);
-
-    return redirect()->to('/admin/lokasi')->with('success', 'Data lokasi berhasil ditambahkan.');
-}
     public function update($id)
     {
         $validation = \Config\Services::validation();
@@ -70,7 +71,7 @@ class LokasiController extends BaseController
         // Validasi input
         $validation->setRules([
             'nama_lokasi'   => 'required',
-            'jarak_tempuh'  => 'required|numeric',
+            'jarak_tempuh'  => 'required|max_length[20]', // BUKAN numeric lagi
             'ongkir'        => 'required|numeric',
         ]);
 
@@ -86,17 +87,15 @@ class LokasiController extends BaseController
 
         return redirect()->to('/admin/lokasi')->with('success', 'Data lokasi berhasil diperbarui.');
     }
+
     public function hapus($id)
-{
-    $lokasi = $this->lokasi->find($id);
-    
-    if ($this->lokasi->delete($id)) {
-        return redirect()->to('/admin/lokasi')->with('success', 'Data lokasi berhasil dihapus');
-    } else {
-        return redirect()->back()->with('error', 'Data lokasi gagal dihapus');
+    {
+        $lokasi = $this->lokasi->find($id);
+
+        if ($this->lokasi->delete($id)) {
+            return redirect()->to('/admin/lokasi')->with('success', 'Data lokasi berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'Data lokasi gagal dihapus');
+        }
     }
 }
-
-
-}
-    

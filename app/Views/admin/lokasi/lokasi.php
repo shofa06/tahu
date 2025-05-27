@@ -60,7 +60,7 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= esc($item['nama_lokasi']) ?></td>
-                                            <td><?= esc($item['jarak_tempuh']) ?> KM</td>
+                                            <td><?= esc($item['jarak_tempuh']) ?></td>
                                             <td>Rp <?= number_format($item['ongkir'], 0, ',', '.') ?></td>
                                             <td>
                                                 <a href="/admin/lokasi/edit/<?= $item['id_lokasi'] ?>" class="btn btn-warning btn-sm">Edit</a>

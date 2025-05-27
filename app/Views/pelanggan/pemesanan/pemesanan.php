@@ -43,9 +43,7 @@
                   <li class="nav-item active">
                      <a class="nav-link" href="">Profile</a>
                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="pesan-produk">Pesan Produk</a>
-                  </li>
+                  
 
                </ul>
                <form class="form-inline my-2 my-lg-0">
@@ -73,7 +71,7 @@
                               <h5 class="tasty_text">Tahu Bakso Crispy</h5>
                               <p class="banner_text"> "Gurihnya Nampol, Crispy-nya Bikin Nagih!" </p>
                               <div class="btn_main">
-                                 <div class="about_bt"><a href="pesan-produk">Pesan Sekarang</a></div>
+                                 <div class="about_bt"><a href="login">Pesan Sekarang</a></div>
                               </div>
                            </div>
                         </div>

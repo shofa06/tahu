@@ -3,12 +3,35 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\ProdukModel;
+use App\Models\PesananModel;
 
 class DashboardController extends BaseController
 {
+    protected $produkModel;
+    protected $pesananModel;
+
+    public function __construct()
+    {
+        $this->produkModel = new ProdukModel();
+        $this->pesananModel = new PesananModel();
+    }
+
     public function index()
     {
-        return view('admin/dashboard/dashboard');
+        // Ambil total data dari database
+        $totalProduk = $this->produkModel->countAll();
+        $totalPesanan = $this->pesananModel->countAll();
+        $totalBelumBayar = $this->pesananModel->where('status', 'Belum Bayar')->countAllResults();
+        $totalSelesai = $this->pesananModel->where('status', 'Selesai')->countAllResults();
+
+        $data = [
+            'total_produk'      => $totalProduk,
+            'total_pesanan'     => $totalPesanan,
+            'total_belum_bayar' => $totalBelumBayar,
+            'total_selesai'     => $totalSelesai,
+        ];
+
+        return view('admin/dashboard/dashboard', $data);
     }
 }

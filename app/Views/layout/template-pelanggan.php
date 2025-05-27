@@ -17,6 +17,8 @@
     <link href="/template-admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="/template-admin/dist/css/style.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -335,16 +337,27 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/pelanggan/pesan-produk" aria-expanded="false">
+                                <i class="mdi mdi-package-variant"></i>
+                                <span class="hide-menu">Pesan Produk</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/pelanggan/pesanan-keranjang" aria-expanded="false">
                                 <i class="mdi mdi-package-variant"></i>
                                 <span class="hide-menu">Pesanan Keranjang</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/pelanggan/arsip-pembayaran" aria-expanded="false">
                                 <i class="mdi mdi-tag-multiple"></i>
                                 <span class="hide-menu">Arsip Pembayaran</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item position-absolute bottom-0 w-100">
+                            <a href="<?= base_url('/logout') ?>" class="sidebar-link text-danger">
+                                <i class="mdi mdi-logout"></i> Logout
                             </a>
                         </li>
 

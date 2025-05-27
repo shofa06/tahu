@@ -346,8 +346,12 @@
                                 <span class="hide-menu">Transaksi Pembayaran</span>
                             </a>
                         </li>
-                        
-                        
+                        <li class="sidebar-item position-absolute bottom-0 w-100">
+                            <a href="<?= base_url('/logout') ?>" class="sidebar-link text-danger">
+                                <i class="mdi mdi-logout"></i> Logout
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

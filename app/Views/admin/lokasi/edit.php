@@ -37,8 +37,9 @@
 
                         <div class="form-group">
                             <label for="jarak_tempuh">Jarak Tempuh</label>
-                            <input type="number" class="form-control" id="jarak_tempuh" name="jarak_tempuh" value="<?= esc($dataLokasi['jarak_tempuh']) ?>" step="0.01" required>
+                            <input type="text" class="form-control" id="jarak_tempuh" name="jarak_tempuh" value="<?= esc($dataLokasi['jarak_tempuh']) ?>" required>
                         </div>
+
 
                         <div class="form-group">
                             <label for="ongkir">Ongkir</label>

@@ -23,57 +23,32 @@
 
     <!-- Cards Section -->
     <div class="row">
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= session()->getFlashdata('success') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif; ?>
+
+        <?php foreach ($dataPesanan as $pesanan) : ?>
         <!-- Dummy Card 1 -->
         <div class="col-md-6 col-lg-4">
             <div class="card shadow-sm border-left-warning">
                 <div class="card-body">
                     <h5 class="card-title">INV-00123</h5>
-                    <p class="mb-1"><strong>Produk:</strong> Tahu Bakso Crispy (Isi 10)</p>
-                    <p class="mb-1"><strong>Jumlah:</strong> 2</p>
-                    <p class="mb-1"><strong>Tanggal:</strong> 2025-05-18</p>
-                    <span class="badge bg-warning text-dark">Diproses</span>
+                    <p class="mb-1"><strong>Produk:</strong> <?= $pesanan['nama_produk'] ?></p>
+                    <p class="mb-1"><strong>Jumlah:</strong> <?= $pesanan['jumlah'] ?></p>
+                    <p class="mb-1"><strong>Tanggal:</strong> <?= $pesanan['tanggal_pemesanan'] ?></p>
+                    <span class="badge bg-warning text-dark"><?= $pesanan['status'] ?></span>
                 </div>
             </div>
         </div>
 
-        <!-- Dummy Card 2 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-left-info">
-                <div class="card-body">
-                    <h5 class="card-title">INV-00124</h5>
-                    <p class="mb-1"><strong>Produk:</strong> Kripik Tempe Pedas</p>
-                    <p class="mb-1"><strong>Jumlah:</strong> 1</p>
-                    <p class="mb-1"><strong>Tanggal:</strong> 2025-05-17</p>
-                    <span class="badge bg-info text-white">Dikirim</span>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>        
 
-        <!-- Dummy Card 3 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-left-success">
-                <div class="card-body">
-                    <h5 class="card-title">INV-00125</h5>
-                    <p class="mb-1"><strong>Produk:</strong> Tahu Bakso Original (Isi 20)</p>
-                    <p class="mb-1"><strong>Jumlah:</strong> 1</p>
-                    <p class="mb-1"><strong>Tanggal:</strong> 2025-05-15</p>
-                    <span class="badge bg-success">Selesai</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Dummy Card 4 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-left-danger">
-                <div class="card-body">
-                    <h5 class="card-title">INV-00126</h5>
-                    <p class="mb-1"><strong>Produk:</strong> Tahu Bakso Spesial Keju</p>
-                    <p class="mb-1"><strong>Jumlah:</strong> 3</p>
-                    <p class="mb-1"><strong>Tanggal:</strong> 2025-05-14</p>
-                    <span class="badge bg-danger">Dibatalkan</span>
-                </div>
-            </div>
-        </div>
+       
     </div>
 </div>
 <?= $this->endSection() ?>
