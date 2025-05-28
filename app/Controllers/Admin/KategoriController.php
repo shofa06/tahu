@@ -21,7 +21,7 @@ class KategoriController extends BaseController
             'dataKategori' => $this->kategori->findAll(),
         ];
 
-        return view('admin/kategori/kategori',$data);
+        return view('admin/kategori/kategori', $data);
     }
 
     public function tambah()
@@ -30,21 +30,24 @@ class KategoriController extends BaseController
     }
 
     public function edit($id)
-    {    $data = [
-        'dataKategori' => $this->kategori->where('id_kategori', $id)->first(),
-    ];
-        return view('admin/kategori/edit',$data);
+    {
+        $data = [
+            'dataKategori' => $this->kategori->where('id_kategori', $id)->first(),
+        ];
+        return view('admin/kategori/edit', $data);
     }
     public function update($id)
     {
+        $id = (int)$id; // Pastikan ID dikonversi ke integer
         // Validasi input
         $validation = \Config\Services::validation();
         $validation->setRules([
             'nama_kategori' => [
-                'rules' => 'required|min_length[3]',
+                'rules' => 'required|min_length[3]|is_unique[kategori.nama_kategori,id_kategori,{id}]',
                 'errors' => [
                     'required' => 'Nama kategori wajib diisi.',
-                    'min_length' => 'Nama kategori minimal 3 karakter.'
+                    'min_length' => 'Nama kategori minimal 3 karakter.',
+                    'is_unique' => 'Nama kategori sudah ada, tidak boleh duplikat.'
                 ]
             ],
         ]);
@@ -65,17 +68,20 @@ class KategoriController extends BaseController
     }
     public function simpan()
     {
+        
         // Validasi input
         $validation = \Config\Services::validation();
         $validation->setRules([
             'nama_kategori' => [
-                'rules' => 'required|min_length[3]',
+                'rules' => 'required|min_length[3]|is_unique[kategori.nama_kategori]',
                 'errors' => [
                     'required' => 'Nama kategori wajib diisi.',
-                    'min_length' => 'Nama kategori minimal 3 karakter.'
+                    'min_length' => 'Nama kategori minimal 3 karakter.',
+                    'is_unique' => 'Nama kategori sudah ada, tidak boleh duplikat.'
                 ]
             ],
         ]);
+
 
         if (!$this->validate($validation->getRules())) {
             return redirect()->back()->withInput()->with('validation', $validation);
@@ -92,7 +98,8 @@ class KategoriController extends BaseController
         }
     }
 
-    public function hapus($id){
+    public function hapus($id)
+    {
 
         $kategori = $this->kategori->find($id);
         if ($this->kategori->delete($id)) {
@@ -102,7 +109,3 @@ class KategoriController extends BaseController
         }
     }
 }
-
-    
-
-

@@ -60,6 +60,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Produk</th>
+                                    <th>Tanggal Pemesanan</th>
                                     <th>Harga</th>
                                     <th>Jumlah</th>
                                     <th>Kategori</th>
@@ -75,6 +76,7 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $pesanan['nama_produk'] ?></td>
+                                        <td><?= date('d-m-Y', strtotime($pesanan['tanggal_pemesanan'])) ?></td>
                                         <td>Rp <?= number_format($pesanan['total_harga'], 0, ',', '.') ?></td>
                                         <td><?= $pesanan['jumlah'] ?></td>
                                         <td><?= $pesanan['nama_kategori'] ?></td>
@@ -97,14 +99,22 @@
                                             </span>
                                         </td>
                                         <td><?= $pesanan['pembayaran'] ?></td>
-                                         <td><?= $pesanan['alamat'] ?></td>   
+                                        <td><?= $pesanan['alamat'] ?></td>
                                         <!-- Tombol Aksi -->
                                         <td>
+                                            <?php
+                                            $status = strtolower($pesanan['status']);
+                                            $disableDiantar = in_array($status, ['diantar', 'selesai', 'batal']);
+                                            $disableSelesaiTolak = in_array($status, ['selesai', 'batal']);
+                                            ?>
+
                                             <!-- Diantar -->
                                             <form action="/karyawan/pesanan/status/<?= $pesanan['id_pesanan'] ?>" method="post" style="display:inline;">
                                                 <?= csrf_field() ?>
                                                 <input type="hidden" name="status" value="diantar">
-                                                <button type="submit" class="btn btn-sm btn-info" onclick="return confirm('Yakin ingin mengubah status menjadi Diantar?')">
+                                                <button type="submit" class="btn btn-sm btn-info"
+                                                    onclick="return confirm('Yakin ingin mengubah status menjadi Diantar?')"
+                                                    <?= $disableDiantar ? 'disabled' : '' ?>>
                                                     Diantar
                                                 </button>
                                             </form>
@@ -113,7 +123,9 @@
                                             <form action="/karyawan/pesanan/status/<?= $pesanan['id_pesanan'] ?>" method="post" style="display:inline; margin-left:5px;">
                                                 <?= csrf_field() ?>
                                                 <input type="hidden" name="status" value="selesai">
-                                                <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Yakin ingin menandai pesanan sebagai Selesai?')">
+                                                <button type="submit" class="btn btn-sm btn-success"
+                                                    onclick="return confirm('Yakin ingin menandai pesanan sebagai Selesai?')"
+                                                    <?= $disableSelesaiTolak ? 'disabled' : '' ?>>
                                                     Selesai
                                                 </button>
                                             </form>
@@ -122,11 +134,14 @@
                                             <form action="/karyawan/pesanan/status/<?= $pesanan['id_pesanan'] ?>" method="post" style="display:inline; margin-left:5px;">
                                                 <?= csrf_field() ?>
                                                 <input type="hidden" name="status" value="batal">
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menolak pesanan ini?')">
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Yakin ingin menolak pesanan ini?')"
+                                                    <?= $disableSelesaiTolak ? 'disabled' : '' ?>>
                                                     Tolak
                                                 </button>
                                             </form>
                                         </td>
+
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

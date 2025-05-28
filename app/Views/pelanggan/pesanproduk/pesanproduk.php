@@ -147,7 +147,7 @@
 <button id="pay-button" class="btn btn-primary" style="display:none;">Bayar Sekarang</button>
 
 <!-- Script Midtrans -->
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= getenv('MIDTRANS_CLIENT_KEY') ?>"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= getenv('SB-Mid-client-BeF9O5Kqr6iNxW9J') ?>"></script>
 
 <script>
     // Tangkap snapToken dari flashdata PHP

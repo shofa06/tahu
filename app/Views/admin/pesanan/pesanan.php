@@ -60,6 +60,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Produk</th>
+                                    <th>Tanggal Pemesanan</th>
                                     <th>Harga</th>
                                     <th>Jumlah</th>
                                     <th>Kategori</th>
@@ -74,6 +75,7 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $pesanan['nama_produk'] ?></td>
+                                        <td><?= date('d-m-Y', strtotime($pesanan['tanggal_pemesanan'])) ?></td>
                                         <td>Rp <?= number_format($pesanan['total_harga'], 0, ',', '.') ?></td>
                                         <td><?= $pesanan['jumlah'] ?></td>
                                         <td><?= $pesanan['nama_kategori'] ?></td>
