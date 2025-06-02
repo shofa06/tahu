@@ -33,22 +33,27 @@
         <?php endif; ?>
 
         <?php foreach ($dataPesanan as $pesanan) : ?>
-        <!-- Dummy Card 1 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-left-warning">
-                <div class="card-body">
-                    <h5 class="card-title">INV-00123</h5>
-                    <p class="mb-1"><strong>Produk:</strong> <?= $pesanan['nama_produk'] ?></p>
-                    <p class="mb-1"><strong>Jumlah:</strong> <?= $pesanan['jumlah'] ?></p>
-                    <p class="mb-1"><strong>Tanggal:</strong> <?= $pesanan['tanggal_pemesanan'] ?></p>
-                    <span class="badge bg-warning text-dark"><?= $pesanan['status'] ?></span>
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm border-left-warning mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Kode Pesanan: <?= $pesanan['kode_pesanan'] ?></h5>
+                        <p class="mb-1"><strong>Tanggal:</strong> <?= $pesanan['tanggal_pemesanan'] ?></p>
+                        <p class="mb-2"><strong>Alamat:</strong> <?= $pesanan['alamat'] ?></p>
+                        
+                        <strong>Produk Dipesan:</strong>
+                        <ul class="mb-2">
+                            <?php foreach ($pesanan['detail'] as $detail) : ?>
+                                <li><?= $detail['nama_produk'] ?> - <?= $detail['jumlah'] ?> x Rp<?= number_format($detail['harga_satuan']) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+
+                        <p><strong>Total Harga: </strong>Rp<?= number_format($pesanan['total_harga']) ?></p>
+
+                        <span class="badge bg-warning text-dark"><?= $pesanan['pembayaran'] ?></span>
+                    </div>
                 </div>
             </div>
-        </div>
-
         <?php endforeach; ?>        
-
-       
     </div>
 </div>
 <?= $this->endSection() ?>

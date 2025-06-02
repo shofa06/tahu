@@ -61,7 +61,8 @@ $routes->post('admin/profil/update', 'admin\ProfilController::update');
 
 $routes->get('karyawan/dashboard', 'karyawan\DashboardControllerKaryawan::index');
 $routes->get('karyawan/pesanan', 'karyawan\PesananControllerKaryawan::index');
-$routes->post('karyawan/pesanan/status/(:num)', 'karyawan\PesananControllerKaryawan::ubahStatus/$1');
+$routes->get('/karyawan/pesanan/export', 'Karyawan\PesananController::export');
+$routes->post('karyawan/pesanan/pembayaran/(:num)', 'karyawan\PesananControllerKaryawan::ubahPembayaran/$1');
 $routes->get('karyawan/transaksi_pembayaran', 'karyawan\TransaksiPembayaranController::index');
 
 $routes->get('pelanggan/dashboard', 'pelanggan\DashboardControllerPelanggan::index');
@@ -70,4 +71,7 @@ $routes->get('pelanggan/arsip-pembayaran', 'pelanggan\ArsipPembayaranController:
 
 $routes->get('pelanggan/pesan-produk', 'pelanggan\PesanProdukController::index');
 $routes->post('pelanggan/pesan-produk/order', 'pelanggan\PesanProdukController::order');
+
+$routes->post('midtrans/notification', 'pelanggan\MidtransController::notification');
+
 

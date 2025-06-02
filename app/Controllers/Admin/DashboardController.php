@@ -22,8 +22,8 @@ class DashboardController extends BaseController
         // Ambil total data dari database
         $totalProduk = $this->produkModel->countAll();
         $totalPesanan = $this->pesananModel->countAll();
-        $totalBelumBayar = $this->pesananModel->where('status', 'Belum Bayar')->countAllResults();
-        $totalSelesai = $this->pesananModel->where('status', 'Selesai')->countAllResults();
+        $totalBelumBayar = $this->pesananModel->where('pembayaran', 'Belum Bayar')->countAllResults();
+        $totalSelesai = $this->pesananModel->where('pembayaran', 'Selesai')->countAllResults();
 
         $data = [
             'total_produk'      => $totalProduk,

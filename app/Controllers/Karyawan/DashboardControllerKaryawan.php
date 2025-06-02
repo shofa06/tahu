@@ -16,8 +16,8 @@ class DashboardControllerKaryawan extends BaseController
         $data = [
             'totalProduk' => $produkModel->countAll(),
             'totalPesanan' => $pesananModel->countAll(),
-            'totalBelumBayar' => $pesananModel->where('status', 'Belum Bayar')->countAllResults(),
-            'totalSelesai' => $pesananModel->where('status', 'Selesai')->countAllResults(),
+            'totalBelumBayar' => $pesananModel->where('pembayaran', 'Belum Bayar')->countAllResults(),
+            'totalSelesai' => $pesananModel->where('pembayaran', 'Selesai')->countAllResults(),
         ];
 
         return view('karyawan/dashboard/dashboard', $data);

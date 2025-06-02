@@ -89,6 +89,8 @@ class PemesananController extends BaseController
         $total_harga = (int)str_replace('.', '', $produk['harga']) * $jumlah;
         $totalKeseluruhan += $total_harga;
 
+        dd($total_harga, $ongkir, $totalKeseluruhan);   
+
         $pesananModel->save([
             'id_user'           => $id_user,
             'id_produk'         => $id_produk,
